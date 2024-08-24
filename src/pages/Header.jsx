@@ -28,7 +28,7 @@ export default function Header() {
       <header className='flex py-2 px-6 sm:px-6 justify-between place-items-center'>
           
           <Link to={'/'} className="flex item-center ">
-            <img src="../src/assets/logo.png" alt="" className='w-26 h-9'/>
+            <img src="/logo.png" alt="" className='w-26 h-9'/>
           </Link>
          
 
