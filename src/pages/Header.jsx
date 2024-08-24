@@ -13,16 +13,9 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef();
 
-  //! Fetch events from the server -------------------------------------------------
- 
 
-
-  //! Search bar functionality----------------------------------------------------
- 
-  
-  //! Logout Function --------------------------------------------------------
   async function logout(){
-    await axios.post('/logout');
+    await axios.post('https://backend-event-qj0c.onrender.com/api/auth/logout');
     setUser(null);
   }
 //! Search input ----------------------------------------------------------------
@@ -42,7 +35,7 @@ export default function Header() {
        
     
           
-          <Link to={'/createEvent'}> {/*TODO:Route create event page after creating it */}
+          <Link to={'/createEvent'}> 
             <div className='hidden md:flex flex-col place-items-center py-1 px-2 rounded text-primary cursor-pointer hover:text-primarydark hover:bg-white hover:shadow-sm shadow-gray-200 hover:transition-shadow duration-1500'>
               <button>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 stroke-3 py-1">
@@ -64,7 +57,7 @@ export default function Header() {
           
           <div className="flex flex-row items-center gap-2 sm:gap-8 ">
             <div className="flex items-center gap-2">
-              <Link to={'/useraccount'}>  {/*TODO: Route user profile page after creating it -> 1.50*/} 
+              <Link to={'/useraccount'}>  
                 {user.name.toUpperCase()}
               </Link>
               
