@@ -20,7 +20,7 @@ export default function RegisterPage() {
     }
 
     try{
-      await axios.post('/register', {
+      await axios.post('https://backend-event-qj0c.onrender.com/api/auth/register', {
         name,
         email,
         password,

@@ -43,6 +43,7 @@ export default function LoginPage() {
 
         setRedirect(true)
       }catch(e){
+        console.error('Login failed:', e.response ? e.response.data : e.message);
         alert('Login failed');
       }
   }
