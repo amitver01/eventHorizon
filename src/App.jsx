@@ -34,9 +34,8 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/forgotpassword' element={<ForgotPassword />} />
         <Route path='/resetpassword' element={<ResetPassword />} />
-       
+        <Route path='/event/:id' element={<EventPage />} />
       </Routes>
-      <DisplayEvent/>
       <Footer/>
     </UserContextProvider>
   );

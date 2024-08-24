@@ -1,131 +1,97 @@
+// src/pages/EventDetailPage.jsx
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { AiFillCalendar } from "react-icons/ai";
-import { MdLocationPin } from "react-icons/md";
-import { FaCopy, FaWhatsappSquare, FaFacebook } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import { FaShareAlt, FaCopy, FaWhatsappSquare, FaFacebook } from "react-icons/fa";
 
-export default function EventPage() {
-  const { id } = useParams();
+export default function EventDetailPage() {
+  const { id } = useParams(); // Get the event ID from the URL
   const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  //! Fetching the event data from server by ID
   useEffect(() => {
-    if (!id) {
-      return;
-    }
     axios
-      .get(`http://localhost:4000/api/events/events/${id}`)
+      .get(`https://backend-event-qj0c.onrender.com/api/events/event/${id}`)
       .then((response) => {
         setEvent(response.data);
+        setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching event:", error);
+        setError("Error fetching event details.");
+        setLoading(false);
       });
   }, [id]);
 
-  //! Copy Functionalities
-  const handleCopyLink = () => {
-    const linkToShare = window.location.href;
-    navigator.clipboard.writeText(linkToShare).then(() => {
-      alert("Link copied to clipboard!");
+  const handleCopyLink = (url) => {
+    navigator.clipboard.writeText(url).then(() => {
+      alert('Link copied to clipboard!');
     });
   };
 
-  const handleWhatsAppShare = () => {
-    const linkToShare = window.location.href;
-    const whatsappMessage = encodeURIComponent(linkToShare);
+  const handleWhatsAppShare = (url) => {
+    const whatsappMessage = encodeURIComponent(`Check out this event: ${url}`);
     window.open(`whatsapp://send?text=${whatsappMessage}`);
   };
 
-  const handleFacebookShare = () => {
-    const linkToShare = window.location.href;
-    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      linkToShare
-    )}`;
+  const handleFacebookShare = (url) => {
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
     window.open(facebookShareUrl);
   };
 
-  if (!event) return null;
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+  if (!event) return <div>No event found.</div>;
+
+  const imageUrl = event.image ? `https://backend-event-qj0c.onrender.com/${event.image}` : '';
+  const eventUrl = `https://backend-event-qj0c.onrender.com/events/${event._id}`;
+  const eventDate = event.eventDate ? event.eventDate.split("T")[0] : 'N/A';
+  const eventTime = event.eventTime || 'N/A';
 
   return (
-    <div className="flex flex-col mx-5 xl:mx-32 md:mx-10 mt-5 flex-grow">
-      <div>
-        {event.image && (
-          <img
-            src={`${event.image}`}
-            alt=""
-            height="500px"
-            width="1440px"
-            className="rounded object-fill aspect-16:9"
-          />
-        )}
-      </div>
-
-      <img
-        src="../src/assets/paduru.png"
-        alt=""
-        className="rounded object-fill aspect-16:9"
-      />
-      {/* FIXME: This is a demo image; after completing the create event function, delete this */}
-
-      <div className="flex justify-between mt-8 mx-2">
-        <h1 className="text-3xl md:text-5xl font-extrabold">
-          {event.title.toUpperCase()}
-        </h1>
-        <Link to={"/event/" + event._id + "/ordersummary"}>
-          <button className="primary">Book Ticket</button>
-        </Link>
-      </div>
-      <div className="mx-2">
-        <h2 className="text-md md:text-xl font-bold mt-3 text-primarydark">
-          {event.ticketPrice === 0 ? "Free" : "LKR. " + event.ticketPrice}
-        </h2>
-      </div>
-      <div className="mx-2 mt-5 text-md md:text-lg truncate-3-lines">
-        {event.description}
-      </div>
-      <div className="mx-2 mt-5 text-md md:text-xl font-bold text-primarydark">
-        Organized By {event.organizedBy}
-      </div>
-      <div className="mx-2 mt-5">
-        <h1 className="text-md md:text-xl font-extrabold">When and Where</h1>
-        <div className="sm:mx-5 lg:mx-32 mt-6 flex flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <AiFillCalendar className="w-auto h-5 text-primarydark" />
-            <div className="flex flex-col gap-1">
-              <h1 className="text-md md:text-lg font-extrabold">Date and Time</h1>
-              <div className="text-sm md:text-lg">
-                Date: {event.eventDate.split("T")[0]} <br />
-                Time: {event.eventTime}
-              </div>
-            </div>
-          </div>
-          <div className="">
-            <div className="flex items-center gap-4">
-              <MdLocationPin className="w-auto h-5 text-primarydark" />
-              <div className="flex flex-col gap-1">
-                <h1 className="text-md md:text-lg font-extrabold">Location</h1>
-                <div className="text-sm md:text-lg">{event.location}</div>
-              </div>
-            </div>
+    <div className="p-6 max-w-4xl mx-auto">
+      <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div className="relative">
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              alt={event.title}
+              className="w-full h-72 object-cover"
+            />
+          )}
+          <div className="absolute top-0 right-0 p-4 flex gap-2">
+            <button
+              onClick={() => handleCopyLink(eventUrl)}
+              className="text-gray-600 hover:text-gray-800"
+            >
+              <FaCopy className="w-6 h-6" />
+            </button>
+            <button
+              onClick={() => handleWhatsAppShare(eventUrl)}
+              className="text-green-600 hover:text-green-800"
+            >
+              <FaWhatsappSquare className="w-6 h-6" />
+            </button>
+            <button
+              onClick={() => handleFacebookShare(eventUrl)}
+              className="text-blue-600 hover:text-blue-800"
+            >
+              <FaFacebook className="w-6 h-6" />
+            </button>
           </div>
         </div>
-      </div>
-      <div className="mx-2 mt-5 text-md md:text-xl font-extrabold">
-        Share with friends
-        <div className="mt-10 flex gap-5 mx-10 md:mx-32">
-          <button onClick={handleCopyLink}>
-            <FaCopy className="w-auto h-6" />
-          </button>
-
-          <button onClick={handleWhatsAppShare}>
-            <FaWhatsappSquare className="w-auto h-6" />
-          </button>
-
-          <button onClick={handleFacebookShare}>
-            <FaFacebook className="w-auto h-6" />
-          </button>
+        <div className="p-6">
+          <h1 className="text-2xl font-bold mb-2">{event.title}</h1>
+          <p className="text-sm text-gray-700 mb-2">
+            {eventDate}, {eventTime}
+          </p>
+          <p className="text-sm text-gray-700 mb-2">
+            {event.ticketPrice === 0 ? 'Free' : 'Rs. ' + event.ticketPrice}
+          </p>
+          <p className="text-base text-gray-900 mb-4">
+            {event.description || 'No description available'}
+          </p>
+         
         </div>
       </div>
     </div>

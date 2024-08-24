@@ -14,32 +14,11 @@ export default function Header() {
   const searchInputRef = useRef();
 
   //! Fetch events from the server -------------------------------------------------
-  useEffect(() => {
-    
-    axios.get("/events").then((response) => {
-      setEvents(response.data);
-    }).catch((error) => {
-      console.error("Error fetching events:", error);
-    });
-  }, []);
+ 
 
 
   //! Search bar functionality----------------------------------------------------
-  useEffect(() => {
-    const handleDocumentClick = (event) => {
-      // Check if the clicked element is the search input or its descendant
-      if (searchInputRef.current && !searchInputRef.current.contains(event.target)) {
-        setSearchQuery("");
-      }
-    };
-
-    // Listen for click events on the entire document
-    document.addEventListener("click", handleDocumentClick);
-
-    return () => {
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, []); 
+ 
   
   //! Logout Function --------------------------------------------------------
   async function logout(){
