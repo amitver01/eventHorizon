@@ -39,6 +39,11 @@ export default function DisplayEvents() {
   if (loading) return <div>Loading...</div>;
 
   return (
+    <div className="text-center">
+      <h1 className="my-3 sm:my-4 md:my-8 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-10 tracking-tight text-black">
+            Listed
+            <span className="text-blue-700"> Events..</span>
+          </h1>
     <div className="mx-10 my-5 grid gap-x-6 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {events.length > 0 &&
         events.map((event) => {
@@ -112,5 +117,6 @@ export default function DisplayEvents() {
           );
         })}
     </div>
+  </div>
   );
 }

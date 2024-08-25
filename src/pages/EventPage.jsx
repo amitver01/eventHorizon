@@ -46,6 +46,8 @@ export default function EventDetailPage() {
   const eventTime = event.eventTime || 'N/A';
 
   return (
+    <div>
+      
     <div className="p-6 max-w-4xl mx-auto">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         <div className="relative">
@@ -87,5 +89,6 @@ export default function EventDetailPage() {
         </div>
       </div>
     </div>
+  </div>
   );
 }
