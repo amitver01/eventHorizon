@@ -50,7 +50,7 @@ export default function DisplayEvents() {
           const eventDate = event.eventDate ? event.eventDate.split("T")[0] : 'N/A';
           const eventTime = event.eventTime || 'N/A';
 
-          const eventUrl = `https://backend-event-qj0c.onrender.com/events/${event._id}`;
+          const eventUrl = `https://eventhorizonamit.netlify.app/event/${event._id}`;
 
           return (
             <div className="bg-white rounded-xl relative overflow-hidden shadow-lg" key={event._id}>

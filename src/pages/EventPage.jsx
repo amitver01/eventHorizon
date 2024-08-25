@@ -34,17 +34,14 @@ export default function EventDetailPage() {
     window.open(`whatsapp://send?text=${whatsappMessage}`);
   };
 
-  const handleFacebookShare = (url) => {
-    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-    window.open(facebookShareUrl);
-  };
+ 
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
   if (!event) return <div>No event found.</div>;
 
   const imageUrl = event.image ? `https://backend-event-qj0c.onrender.com/${event.image}` : '';
-  const eventUrl = `https://backend-event-qj0c.onrender.com/events/${event._id}`;
+  const eventUrl = `https://eventhorizonamit.netlify.app/event/${event._id}`;
   const eventDate = event.eventDate ? event.eventDate.split("T")[0] : 'N/A';
   const eventTime = event.eventTime || 'N/A';
 
@@ -72,12 +69,7 @@ export default function EventDetailPage() {
             >
               <FaWhatsappSquare className="w-6 h-6" />
             </button>
-            <button
-              onClick={() => handleFacebookShare(eventUrl)}
-              className="text-blue-600 hover:text-blue-800"
-            >
-              <FaFacebook className="w-6 h-6" />
-            </button>
+            
           </div>
         </div>
         <div className="p-6">
