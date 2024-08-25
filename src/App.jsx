@@ -16,7 +16,7 @@ import EventPage from './pages/EventPage';
 import OrderSummary from './pages/OrderSummary';
 import PaymentSummary from './pages/PaymentSummary';
 import DisplayEvent from './pages/DisplayEvents';
-
+import Admin from './pages/Admin' ;
 
 
 axios.defaults.baseURL = 'http://localhost:4000/';
@@ -35,6 +35,7 @@ function App() {
         <Route path='/forgotpassword' element={<ForgotPassword />} />
         <Route path='/resetpassword' element={<ResetPassword />} />
         <Route path='/event/:id' element={<EventPage />} />
+        <Route path='/admin' element={<Admin/>}/>
       </Routes>
       <Footer/>
     </UserContextProvider>
