@@ -66,11 +66,7 @@ export default function Header() {
                   Sign up
                 </button>
               </Link>
-              <Link to={'/admin'}>
-                <button className="py-2 px-4 rounded-lg text-primary bg-gray-100 border border-gray-300 hover:bg-gray-200 transition-all">
-                  Admin
-                </button>
-              </Link>
+              
             </div>
           )}
         </div>

@@ -6,7 +6,7 @@ export default function AdminPage() {
   const [newEvent, setNewEvent] = useState({ title: '', description: '', date: '' });
   const [deleteEventId, setDeleteEventId] = useState('');
 
-  // Fetch events on component mount
+  
   useEffect(() => {
     async function fetchEvents() {
       try {
