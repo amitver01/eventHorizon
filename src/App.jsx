@@ -15,6 +15,8 @@ import AddEvent from './pages/AddEvent';
 import EventPage from './pages/EventPage';
 
 import Admin from './pages/Admin' ;
+import { Upcoming } from './pages/Upcoming';
+import About from './pages/About';
 
 
 axios.defaults.baseURL = 'http://localhost:4000/';
@@ -28,12 +30,14 @@ function App() {
           <Route index element={<IndexPage />} />
           <Route path='/useraccount' element={<UserAccountPage />} />
           <Route path='/createEvent' element={<AddEvent />} />
-        <Route path='/register' element={<RegisterPage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/forgotpassword' element={<ForgotPassword />} />
-        <Route path='/resetpassword' element={<ResetPassword />} />
-        <Route path='/event/:id' element={<EventPage />} />
-        <Route path='/admin' element={<Admin/>}/>
+          <Route path='/register' element={<RegisterPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/forgotpassword' element={<ForgotPassword />} />
+          <Route path='/resetpassword' element={<ResetPassword />} />
+          <Route path='/event/:id' element={<EventPage />} />
+          <Route path='/admin' element={<Admin/>}/>
+          <Route path='/upcoming' element={<Upcoming/>}/>
+          <Route path='/about' element={<About/>}/>
       </Routes>
       <Footer/>
     </UserContextProvider>
