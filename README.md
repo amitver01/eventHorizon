@@ -3,7 +3,7 @@ Here is the complete README file in code format, including a placeholder for you
 ```markdown
 # Event Management System - Frontend
 
-![Screenshot](./assets/screenshot.png)
+![screenshot](./assets/screenshot.png)
 
 
 ## Overview
