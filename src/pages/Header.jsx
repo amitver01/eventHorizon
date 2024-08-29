@@ -24,8 +24,18 @@ export default function Header() {
         </Link>
 
         {!!user && (
-          <Link to={'/createEvent'} className="hidden md:flex items-center space-x-2 py-2 px-4 rounded-lg text-primary bg-white border border-primary hover:text-white hover:bg-primary hover:shadow-md transition-all">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+          <Link 
+            to={'/createEvent'} 
+            className="flex items-center space-x-2 py-2 px-4 rounded-lg text-primary bg-white border border-primary hover:text-white hover:bg-primary hover:shadow-md transition-all md:flex-row md:space-x-2"
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              strokeWidth={1.5} 
+              stroke="currentColor" 
+              className="w-5 h-5"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
             <span className="font-semibold">Create Event</span>
@@ -38,14 +48,21 @@ export default function Header() {
               <Link to={'/useraccount'} className="font-semibold text-gray-800">
                 {user.name.toUpperCase()}
               </Link>
-              <BsFillCaretDownFill className="h-5 w-5 cursor-pointer hover:rotate-180 transition-transform" onClick={() => setIsMenuOpen(!isMenuOpen)} />
+              <BsFillCaretDownFill
+                className="h-5 w-5 cursor-pointer hover:rotate-180 transition-transform"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              />
               {isMenuOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
                   <nav className="flex flex-col space-y-2 py-2">
-                    <Link className="px-4 py-2 hover:bg-gray-100 rounded-lg" to={'/createEvent'}>
+                    <Link className="px-4 py-2 hover:bg-gray-100 rounded-lg" 
+                    to={'/createEvent'}>
                       Create Event
                     </Link>
-                    <button className="px-4 py-2 flex items-center space-x-2 hover:bg-gray-100 rounded-lg" onClick={logout}>
+                    <button
+                      className="px-4 py-2 flex items-center space-x-2 hover:bg-gray-100 rounded-lg"
+                      onClick={logout}
+                    >
                       <span>Log out</span>
                       <RxExit className="h-5 w-5" />
                     </button>
@@ -65,7 +82,6 @@ export default function Header() {
                   Sign up
                 </button>
               </Link>
-              
             </div>
           )}
         </div>
