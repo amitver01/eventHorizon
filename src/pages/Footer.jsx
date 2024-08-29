@@ -7,7 +7,7 @@ function FooterWithLogo() {
       <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-y-6 gap-x-12 text-center">
         {/* Logo */}
         <Link to={'/'} className="flex items-center">
-          <img src="/logo.png" alt="Logo" className="w-26 h-9" />
+          <img src="/logoo.jpg" alt="Logo" className="w-26 h-9" />
         </Link>  
 
         {/* Navigation Links */}

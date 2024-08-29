@@ -20,7 +20,7 @@ export default function Header() {
     <div>
       <header className="flex py-4 px-6 sm:px-8 justify-between items-center bg-white shadow-md">
         <Link to={'/'} className="flex items-center">
-          <img src="/logo.png" alt="Logo" className="w-26 h-9" />
+          <img src="/logoo.jpg" alt="Logo" className="w-26 h-9" />
         </Link>
 
         {!!user && (
