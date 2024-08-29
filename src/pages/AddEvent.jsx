@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from '../UserContext';
-
+import { useNavigate } from 'react-router-dom';
 export default function AddEvent() {
   const { user } = useContext(UserContext);
   const [formData, setFormData] = useState({
@@ -41,6 +41,7 @@ export default function AddEvent() {
       });
       console.log('Event posted successfully:', response.data);
       alert('Event posted successfully!');
+      navigate('/');
     } catch (error) {
       console.error('Error posting event:', error);
       alert('Failed to post event.');
