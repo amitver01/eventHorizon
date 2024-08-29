@@ -2,6 +2,9 @@ import { useContext, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from '../UserContext';
 import { useNavigate } from 'react-router-dom';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
 export default function AddEvent() {
   const { user } = useContext(UserContext);
   const [formData, setFormData] = useState({
@@ -15,6 +18,7 @@ export default function AddEvent() {
     image: '',
     
   });
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -41,10 +45,16 @@ export default function AddEvent() {
       });
       console.log('Event posted successfully:', response.data);
       alert('Event posted successfully!');
-      navigate('/');
-    } catch (error) {
-      console.error('Error posting event:', error);
-      alert('Failed to post event.');
+      setIsPopupOpen(true);
+    } catch (error){
+      if (error.response) {
+        console.error('Error posting event:', error.response.data);
+      } else if (error.request) {
+        console.error('No response received:', error.request);
+      } else {
+        console.error('Error in request setup:', error.message);
+      }
+      console.error('Error configuration:', error.config);
     }
   };
 
@@ -142,6 +152,25 @@ export default function AddEvent() {
         
         <button className="primary" type="submit">Submit</button>
       </form>
+      <Popup 
+  open={isPopupOpen} 
+  onClose={() => setIsPopupOpen(false)} 
+  position="top center"
+  contentStyle={{ padding: '0', border: 'none', borderRadius: '8px', width: '300px' }}
+  overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
+>
+  <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+    <h2 className="text-xl font-bold text-green-600 mb-4">Success!</h2>
+    <p className="text-gray-700 mb-6">Event posted successfully!</p>
+    <button 
+      onClick={() => navigate('/')} 
+      className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-primarydark transition duration-200"
+    >
+      Go to Home
+    </button>
+  </div>
+</Popup>
+
     </div>
   );
 }

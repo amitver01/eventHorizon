@@ -138,9 +138,11 @@ export default function LoginPage() {
    
     <div className= "hidden lg:flex flex-col right-box">
       <div className='flex flex-col -ml-96 gap-3'>
-        <div className='text-3xl font-black'>Welcome to</div>
-        <div>
-          <img src="../src/assets/logo.png" alt="" className="w-48"/>
+        <div className='text-6xl font-extrabold leading-8 text-black'>Welcome to 
+          <span className="text-blue-700 gap-3"> eveHorizon</span>
+          </div>
+        <div className='flex justify-center'>
+          <img src="../src/assets/welcome.svg" alt="" className="w-64 items-end"/>
         </div>
       </div>
 
