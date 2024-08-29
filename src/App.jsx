@@ -13,9 +13,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import AddEvent from './pages/AddEvent';
 import EventPage from './pages/EventPage';
-import OrderSummary from './pages/OrderSummary';
-import PaymentSummary from './pages/PaymentSummary';
-import DisplayEvent from './pages/DisplayEvents';
+
 import Admin from './pages/Admin' ;
 
 

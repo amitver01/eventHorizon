@@ -28,7 +28,7 @@ export default function LoginPage() {
       ev.preventDefault();
 
       try{
-        const {data} = await axios.post('https://backend-event-qj0c.onrender.com/api/auth/login', {email, password})
+        const {data} = await axios.post('https://backend-event-qj0c.onrender.com/api/auth/login', {email, password} ,{ withCredentials: true })
         setUser(data);
         alert('Login success');
 

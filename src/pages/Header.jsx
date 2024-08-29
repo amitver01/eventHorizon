@@ -23,12 +23,15 @@ export default function Header() {
           <img src="/logo.png" alt="Logo" className="w-26 h-9" />
         </Link>
 
-        <Link to={'/createEvent'} className="hidden md:flex items-center space-x-2 py-2 px-4 rounded-lg text-primary bg-white border border-primary hover:text-white hover:bg-primary hover:shadow-md transition-all">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-          </svg>
-          <span className="font-semibold">Create Event</span>
-        </Link>
+        {/* Conditionally render the Create Event button only if the user is logged in */}
+        {!!user && (
+          <Link to={'/createEvent'} className="hidden md:flex items-center space-x-2 py-2 px-4 rounded-lg text-primary bg-white border border-primary hover:text-white hover:bg-primary hover:shadow-md transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            <span className="font-semibold">Create Event</span>
+          </Link>
+        )}
 
         <div className="flex items-center space-x-4">
           {!!user ? (
@@ -70,7 +73,6 @@ export default function Header() {
               </Link>
             </div>
           )}
-          
         </div>
       </header>
     </div>
