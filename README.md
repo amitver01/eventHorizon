@@ -126,10 +126,5 @@ EveHorizon
 
 Contributions are welcome! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcomed.
 
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
---- 
 
 Let me know if you'd like to add more details, such as additional API endpoints, setup instructions, or usage guidelines!
